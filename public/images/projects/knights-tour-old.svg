@@ -1,0 +1,52 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Knight's Tour FPGA visual</title>
+  <desc id="desc">Isometric board with highlighted knight moves to represent FPGA control.</desc>
+  <defs>
+    <linearGradient id="board-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b132b" />
+      <stop offset="100%" stop-color="#1c2541" />
+    </linearGradient>
+    <linearGradient id="knight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f4f1de" />
+      <stop offset="100%" stop-color="#f2cc8f" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#board-bg)" />
+  <g transform="translate(300 150) rotate(-15)" opacity="0.85">
+    <g fill="none" stroke="#3a506b" stroke-width="2">
+      <rect x="0" y="0" width="560" height="560" />
+      <path d="M70 0 L70 560" />
+      <path d="M140 0 L140 560" />
+      <path d="M210 0 L210 560" />
+      <path d="M280 0 L280 560" />
+      <path d="M350 0 L350 560" />
+      <path d="M420 0 L420 560" />
+      <path d="M490 0 L490 560" />
+      <path d="M0 70 L560 70" />
+      <path d="M0 140 L560 140" />
+      <path d="M0 210 L560 210" />
+      <path d="M0 280 L560 280" />
+      <path d="M0 350 L560 350" />
+      <path d="M0 420 L560 420" />
+      <path d="M0 490 L560 490" />
+    </g>
+    <g fill="#3a506b" fill-opacity="0.35">
+      <rect x="0" y="0" width="70" height="70" />
+      <rect x="140" y="0" width="70" height="70" />
+      <rect x="280" y="0" width="70" height="70" />
+      <rect x="420" y="0" width="70" height="70" />
+      <rect x="70" y="70" width="70" height="70" />
+      <rect x="210" y="70" width="70" height="70" />
+      <rect x="350" y="70" width="70" height="70" />
+      <rect x="490" y="70" width="70" height="70" />
+    </g>
+    <g stroke="#f2cc8f" stroke-width="4" stroke-linecap="round" stroke-dasharray="12 12">
+      <path d="M105 105 L245 175 L385 105 L455 245 L315 315 L175 245 L105 385 L245 455" />
+    </g>
+    <circle cx="105" cy="105" r="18" fill="#e76f51" />
+    <circle cx="245" cy="175" r="18" fill="#e76f51" />
+    <circle cx="385" cy="105" r="18" fill="#e76f51" />
+    <path d="M245 455 C260 400 330 330 410 330" fill="none" stroke="#e9c46a" stroke-width="6" stroke-linecap="round" />
+    <polygon points="460,330 420,350 420,310" fill="url(#knight)" stroke="#f4a261" stroke-width="4" />
+  </g>
+</svg>

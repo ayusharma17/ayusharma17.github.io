@@ -1,0 +1,435 @@
+export type ProjectLink = {
+  live?: string;
+  repo?: string;
+  report?: string;
+};
+
+export type ProjectSection = {
+  heading: string;
+  body: string[];
+};
+
+export type ProjectMetric = {
+  label: string;
+  value: string;
+};
+
+export type Project = {
+  slug: string;
+  title: string;
+  year: string;
+  tools: string[];
+  summary: string;
+  tags: string[];
+  cover: string;
+  links: ProjectLink;
+  caseStudy: {
+    heroCaption: string;
+    problem: ProjectSection;
+    approach?: ProjectSection[];
+    currentProgress?: ProjectSection;
+    outcome?: ProjectSection;
+    metrics: ProjectMetric[];
+    behindTheBuild?: string[];
+  };
+};
+
+export const projects: Project[] = [
+  {
+    slug: 'tricking-ai-detectors',
+    title: 'Tricking AI Detectors',
+    year: '2025',
+    tools: ['PyTorch', 'TinyLlama', 'LoRA', 'scikit-learn', 'Python'],
+    summary:
+      'Fine-tuned lightweight language models and built evaluator pipelines to generate human-like prose that slipped past commercial AI text detectors.',
+    tags: ['machine-learning', 'nlp', 'research'],
+    cover: '/images/projects/tricking-ai.svg',
+    links: {
+      report: '/docs/tricking-ai-report.pdf',
+      repo: 'https://github.com/ayusharma17/Tricking-AI-Detectors-ECE539'
+    },
+    caseStudy: {
+      heroCaption:
+        'A responsive training and evaluation pipeline that iterated over thousands of prompts to raise “humanness” scores in detector benchmarks.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'Commercial AI detectors still struggle with adversarially crafted text, yet creative teams rely on them to gate content. Our course project set out to understand and exploit that gap while documenting the ethics along the way.',
+          'We needed a controllable loop that could generate, score, and refine language samples until they resembled authentic human writing according to a diverse detector panel.'
+        ]
+      },
+      approach: [
+        {
+          heading: 'Detection Benchmark',
+          body: [
+            'Implemented a scoring harness that aggregated metrics (ROC AUC, F1, confusion matrices) from sixteen public AI detectors and our own logistic regression baseline.',
+            'Curated a corpus mixing essays, marketing copy, and short-form storytelling to keep the benchmark grounded in realistic use cases.'
+          ]
+        },
+        {
+          heading: 'Generation Loop',
+          body: [
+            'Fine-tuned TinyLlama-1.1B with LoRA adapters for parameter-efficient training, improving fluency while keeping the model nimble enough for quick experimentation.',
+            'Designed an iterative generate–score–select loop: each batch of candidates fed detector scores back into a selector that learned which stylistic adjustments (hedging language, varied syntax) moved the needle.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Raised the “humanness” probability of flagged text by 10% on average while keeping semantic intent intact.',
+          'Published a project report summarizing attack strategies, mitigation ideas for detector vendors, and the ethics checklist we used to keep our work responsible.'
+        ]
+      },
+      metrics: [
+        { label: 'Detector Accuracy', value: '91.3% on binary classifier' },
+        { label: 'Human-likeness Gain', value: '+10% vs TinyLlama baseline' },
+        { label: 'Number of prompts used to finetune', value: '10' }
+      ],
+      behindTheBuild: [
+        'Tested alternative sampling temperatures and repetition penalties; small shifts produced the largest detector confusion.',
+        'Automated nightly regression tests against held-out detector APIs to catch drift.'
+      ]
+    }
+  },
+  {
+    slug: 'fpga-knights-tour',
+    title: 'Knight’s Tour Solver on FPGA',
+    year: '2024',
+    tools: ['SystemVerilog', 'QuestaSim', 'Synopsys', 'FPGA'],
+    summary:
+      'Coded a hardware solver and actuation pipeline that let an FPGA-driven robot execute Knight’s Tour paths with real-time feedback.',
+    tags: ['fpga', 'hardware', 'robotics'],
+    cover: '/images/projects/knights-tour.svg',
+    links: {},
+    caseStudy: {
+      heroCaption:
+        'A hybrid of precise motion control and search heuristics deployed on custom FPGA logic and a Bluetooth-driven robot arm.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'For our digital design course, we were tasked with building an FPGA-based system that could move on a chessboard like a Knight and cover all squares exactly once (the Knight’s Tour problem).',
+          'Teams were ranked on circuit area and the quality of the verification testbench.'
+        ]
+      },
+      approach: [
+        {
+          heading: 'Communication',
+          body: [
+            'Implemented an SPI interface to stream board states and receive move acknowledgments from the robot’s microcontroller.',
+            "Built custom UART and Bluetooth modules to receive commands from a phone to move the knight manually or start the tour."
+          ]
+        },
+        {
+          heading: 'Control',
+          body: [
+            'Built a PID controller to translate FPGA move commands into smooth motor actuation sequences.',
+            'Designed a motor driver to control the motors using the PID output.',
+            'Added an IR interface to detect square occupancy and provide real-time feedback to the solver.'
+          ]
+        },
+        {
+          heading: 'Synthesis & Optimization',
+          body: [
+            'Used Synopsys tooling to gate clocks and reduce area by 25%.',
+            'Also synthesized the design for a Xilinx FPGA target, meeting timing at a 5 ms control loop.'
+          ]
+        },
+        {
+          heading: 'Verification',
+          body: [
+            'Built a testing package to simulate real-world scenarios.',
+            'Implemented a UVM-based testbench to verify the design.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Ranked 2nd out of 20 teams (across Masters and Undergraduate teams).'
+        ]
+      },
+      metrics: [
+        { label: 'Control Loop', value: '5 ms' },
+        { label: 'Team Size', value: '4 collaborators' }
+      ],
+      behindTheBuild: [
+        'Learned how to build comprehensive testing suites.',
+        'Practiced close collaboration on a hardware–software project.'
+      ]
+    }
+  },
+  {
+    slug: 'indie-music-tiktok',
+    title: 'Indie Music Discovery for TikTok',
+    year: '2024',
+    tools: ['Python', 'Pandas', 'Spotify API', 'scikit-learn', 'Flutter'],
+    summary:
+      'Matched emerging TikTok trends with under-the-radar artists by mining 600K+ Spotify profiles and clustering the vibe signature of indie tracks.',
+    tags: ['data-science', 'music', 'product'],
+    cover: '/images/projects/indie-music.svg',
+    links: {},
+    caseStudy: {
+      heroCaption:
+        'Trend sensing met artist advocacy—an ML pipeline that championed indie tracks likely to resonate with short-form creators.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'TikTok’s recommendation loops reward established hits, leaving independent artists underexposed. We wanted a tool that spotted songs poised to ride emerging trends.',
+          'Any solution had to balance statistical rigor with a friendly UX for curators unfamiliar with data tooling.'
+        ]
+      },
+      approach: [
+        {
+          heading: 'Data Acquisition',
+          body: [
+            'Harvested audio features, engagement metrics, and social signals for 600K+ Spotify artist profiles using batched API requests and rate-limit-aware job queues.',
+            'Augmented the dataset with TikTok hashtag velocity scraped via internal tooling to align audio patterns with cultural momentum.'
+          ]
+        },
+        {
+          heading: 'Modeling',
+          body: [
+            'Vectorized lyrics and captions with TF-IDF, then layered gradient boosted ranking models to surface songs with complementary sonic fingerprints.',
+            'Calibrated a hybrid similarity score that rewarded novelty without sacrificing genre fit.'
+          ]
+        },
+        {
+          heading: 'Product Surface',
+          body: [
+            'Built a Flutter prototype mirroring the TikTok interface so curators could audition clips and bookmark favorites.',
+            'Designed human-in-the-loop review flows so artists could opt in and provide feedback on recommendations.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Curated weekly playlists with a 30% lift in user-approved picks compared to a control set.',
+          'Championed a policy doc encouraging responsible sourcing and transparent attribution for indie creators.'
+        ]
+      },
+      metrics: [
+        { label: 'Artist Profiles', value: '600K+' },
+        { label: 'Team', value: '5 collaborators' },
+        { label: 'User Approval Lift', value: '30% vs control' }
+      ]
+    }
+  },
+
+  {
+    slug: 'riscv-processor-design',
+    title: 'RISC-V Processor',
+    year: '2025',
+    tools: ['Verilog', 'RISC-V', 'RTL Simulation', 'QuestaSim'],
+    summary:
+      'A 5-stage pipelines RISC V processor with forwarding and hazard detection from scratch.',
+    tags: ['computer-architecture', 'hardware', 'rtl'],
+    cover: '/images/projects/RISC-V-Single-Cycle.png',
+    links: { repo: '' },
+    caseStudy: {
+      heroCaption:
+        'Single Cycle Architecture.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'Implement a RISC-V processor supporting the RV32I instruction set.',
+        ]
+      },
+      approach: [
+        {
+          heading: 'Modules',
+          body: [
+            'ALU, register file, control, immediate decode; clean EX/MEM/WB interfaces.',
+            'Directed tests for arithmetic, branching, and loads/stores.'
+          ]
+        },
+        {
+          heading: 'Toward Pipeline',
+          body: [
+            'Plan for a 5-stage pipeline with data/ctrl hazard handling and basic forwarding.',
+            'Add memory timing assumptions and simple caches later.'
+          ]
+        }
+      ],
+      currentProgress: {
+        heading: 'Current progress',
+        body: [
+          'Single-cycle datapath RTL verified against directed instruction suites with waveform reviews to validate timing.',
+          'Pipeline design doc outlines hazard detection and forwarding paths.'
+        ]
+      },
+     metrics: [
+       { label: 'ISA', value: 'RV32I (target)' },
+       { label: 'Design Phase', value: 'Single-cycle → Pipeline' }
+     ]
+    }
+  },
+
+  {
+    slug: 'self-driving-car-sim',
+    title: 'Self-Driving Car Simulation',
+    year: '2024',
+    tools: ['JavaScript', 'Neural Networks', 'Genetic Algorithms', 'HTML5 Canvas'],
+    summary:
+      'Browser-based physics simulator with a tiny neural controller evolved by a genetic algorithm to navigate dynamic traffic.',
+    tags: ['simulation', 'ml', 'web'],
+    cover: '/images/projects/self-driving-car.png',
+    links: { live: '', repo: '' },
+    caseStudy: {
+      heroCaption:
+        'Real-time sensors, collisions, and GA-evolved policies visualized in the browser.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'Build an interpretable sandbox to test autonomous driving policies without heavy frameworks.',
+          'Policies should generalize to randomized obstacles and traffic patterns.'
+        ]
+      },
+      approach: [
+        {
+          heading: 'Environment & Sensors',
+          body: [
+            'Implemented ray sensors, collision detection, and friction/drag with a stable time step.',
+            'Instrumented overlays for velocity, steering, and fitness.'
+          ]
+        },
+        {
+          heading: 'Policy & Training',
+          body: [
+            'Used a small feed-forward net as the controller.',
+            'Evolved weights via GA (selection, crossover, mutation) with seeded runs for reproducibility.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Controllers achieved ~90% course completion on randomized scenarios.',
+          'Delivered an educational demo to visualize reward shaping and exploration.'
+        ]
+      },
+      metrics: [
+        { label: 'Track Completion', value: '~90% (median)' },
+        { label: 'Sim FPS', value: '60' }
+      ],
+      behindTheBuild: [
+        'Kept the model tiny for speed and interpretability.',
+        'Added deterministic seeds to compare runs apples-to-apples.'
+      ]
+    }
+  },
+  {
+    slug: 'musicminer',
+    title: 'MusicMiner.net',
+    year: '2022',
+    tools: ['Django', 'BeautifulSoup4', 'Selenium', 'REST'],
+    summary:
+      'Full-stack platform that scraped long-tail artist data and exposed it via a clean REST API and searchable UI.',
+    tags: ['APIs', 'Web Scraping', 'data-science'],
+    links: {
+      repo: 'https://www.musicminer.net/'
+    },
+    cover: '/images/projects/music-miner.png',
+
+    caseStudy: {
+      heroCaption:
+        'The website.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'I wanted to discover new genres and new artists. However, most music databases focus on popular artists and tracks, based on what I already like.',
+        ]
+      },
+      approach: [
+        {
+          heading: 'Data Scraping',
+          body: [
+            'Built Selenium/BS4 crawlers with retry/backoff and ban avoidance.',
+            'Normalized scraped fields into a JSON schema with deduplication.'
+          ]
+        },
+        {
+          heading: 'API & UI',
+          body: [
+            'Designed REST endpoints for artists, tracks, and genres.',
+            'Implemented search + filters; added basic caching to reduce TTFB.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Cataloged 600K+ pages worth of artist data and exposed fast lookups.',
+          'Enabled genre and energy/tempo-based discovery across 500+ genres.'
+        ]
+      },
+      metrics: [
+        { label: 'Pages Parsed', value: '600K+' },
+        { label: 'Genres Covered', value: '500+' }
+      ],
+      behindTheBuild: [
+        'Wrote idempotent ETL jobs so re-runs never duplicate rows.',
+        'Kept the UI minimal to emphasize speed and filtering.'
+      ]
+    }
+  },
+  
+  {
+    slug: 'rps-robotic-arm',
+    title: 'Robotic Rock-Paper-Scissors Arm',
+    year: '2022',
+    tools: ['Arduino', 'C++', 'Flex Sensors', 'Servos'],
+    summary:
+      'Gesture-controlled robotic arm that mirrors a glove’s hand signs in real time using flex-sensor inputs.',
+    tags: ['robotics', 'embedded', 'sensors'],
+    cover: '/images/projects/rps-arm.png',
+    links: { repo: '' },
+    caseStudy: {
+      heroCaption:
+        'Low-cost hand-to-robot mirroring with debounced sensing and smooth actuation.',
+      problem: {
+        heading: 'Problem',
+        body: [
+          'Create an affordable demo of human-gesture recognition mapped to a robotic arm.',
+          'Keep the system responsive and stable despite noisy sensor inputs.'
+        ]
+      },
+      approach: [
+        {
+          heading: 'Sensing & Signal',
+          body: [
+            'Glove with flex sensors; signal conditioning and debouncing.',
+            'Thresholding and simple calibration for per-user fit.'
+          ]
+        },
+        {
+          heading: 'Actuation',
+          body: [
+            'Servo control routines with easing to reduce jitter.',
+            'Fail-safe positions and timeouts for stability.'
+          ]
+        }
+      ],
+      outcome: {
+        heading: 'Outcome',
+        body: [
+          'Consistent gesture recognition and mirroring in real time.',
+          'Good classroom demo for sensor→control pipelines.'
+        ]
+      },
+      metrics: [
+        { label: 'Latency', value: 'Human-perceptible ~instant' },
+        { label: 'DOF', value: 'Multi-servo hand/arm' }
+      ],
+      behindTheBuild: [
+        'Prioritized simple, explainable logic over complex ML.',
+        'Tuned servo motion profiles to feel natural.'
+      ]
+    }
+  }
+];
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
