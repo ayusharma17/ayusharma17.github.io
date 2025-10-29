@@ -1,8 +1,10 @@
 {
-  "/(site)/about/page": "app/(site)/about/page.js",
-  "/(site)/contact/page": "app/(site)/contact/page.js",
-  "/(site)/projects/[slug]/page": "app/(site)/projects/[slug]/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/(site)/page": "app/(site)/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/(site)/projects/page": "app/(site)/projects/page.js"
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/(site)/projects/page": "app/(site)/projects/page.js",
+  "/(site)/about/page": "app/(site)/about/page.js",
+  "/(site)/projects/[slug]/page": "app/(site)/projects/[slug]/page.js",
+  "/(site)/contact/page": "app/(site)/contact/page.js"
 }

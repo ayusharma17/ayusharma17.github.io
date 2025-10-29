@@ -1,0 +1,1 @@
+"use strict";exports.id=695,exports.ids=[695],exports.modules={9695:(e,s,t)=>{t.r(s),t.d(s,{default:()=>r});let r=(0,t(6592).createProxy)(String.raw`/Users/ayushsharma/Desktop/Portfolio Website/ayusharma17.github.io/webgl/CanvasHero.tsx#default`)}};

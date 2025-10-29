@@ -2,8 +2,8 @@ import * as THREE from 'three';
 
 export type HeroUniforms = {
   u_time: { value: number };
-  u_resolution: { value: THREE.Vector2 };
-  u_mouse: { value: THREE.Vector2 };
+  u_resolution: { value: any };
+  u_mouse: { value: any };
   u_contrast: { value: number };
   u_intensity: { value: number };
   u_hue: { value: number };
@@ -15,11 +15,11 @@ export type ShaderSource = {
 };
 
 export type HeroThreeContext = {
-  renderer: THREE.WebGLRenderer;
-  scene: THREE.Scene;
-  camera: THREE.OrthographicCamera;
+  renderer: any;
+  scene: any;
+  camera: any;
   uniforms: HeroUniforms;
-  mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
+  mesh: any;
   resize: () => void;
   render: (time: number) => void;
   dispose: () => void;

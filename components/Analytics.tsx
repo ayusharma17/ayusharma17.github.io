@@ -16,7 +16,7 @@ export default function Analytics() {
       persistence: 'memory'
     });
     return () => {
-      posthog.shutdown();
+      posthog.reset();
     };
   }, []);
 

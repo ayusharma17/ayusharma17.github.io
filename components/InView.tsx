@@ -5,11 +5,12 @@ import { useEffect, useRef } from 'react';
 type InViewProps = React.PropsWithChildren<{
   delay?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }>;
 
-export default function InView({ children, delay = 0, className, as: Component = 'div' }: InViewProps) {
-  const ref = useRef<HTMLElement | null>(null);
+export default function InView({ children, delay = 0, className, as }: InViewProps) {
+  const Component = as ?? 'div';
+  const ref = useRef<HTMLElement | SVGElement | null>(null);
 
   useEffect(() => {
     const target = ref.current;

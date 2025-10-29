@@ -29,7 +29,7 @@ async function loadShaders() {
 export default function CanvasHero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contextRef = useRef<HeroThreeContext | null>(null);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   const [supported, setSupported] = useState(true);
   const [devMode, setDevMode] = useState(false);
@@ -56,7 +56,7 @@ export default function CanvasHero() {
     const stopLoop = () => {
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current);
-        frameRef.current = undefined;
+        frameRef.current = null;
       }
     };
 
